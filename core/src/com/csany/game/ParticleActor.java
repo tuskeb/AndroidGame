@@ -89,8 +89,11 @@ public class ParticleActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+/*
+        batch.draw(new Texture(Gdx.files.internal("a.png")), getX(), getY(), 30, 30);
 
         sprite.draw(batch);
+*/
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         if(this.state) renderer.setColor(0, 0, 1, 1);

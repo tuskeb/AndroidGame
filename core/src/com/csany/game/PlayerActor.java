@@ -103,14 +103,15 @@ public class PlayerActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
+sprite.draw(batch);
+
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         renderer.setColor(.1f, .1f, .1f, 1);
 
-       // renderer.circle(getX(), getY(), 5);
+        // renderer.circle(getX(), getY(), 5);
 
         for(Segment segment : segments) {
-
             renderer.rectLine(
                     segment.px, segment.py,
                     segment.x, segment.y,

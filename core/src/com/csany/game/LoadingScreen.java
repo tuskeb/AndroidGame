@@ -90,13 +90,17 @@ public class LoadingScreen extends MyScreen {
         try {
             if (frameChanger > 0.115) {
                 aa++;
-                sprite.setRegion(loadingAtlasRegions.get(aa));
+                if (aa<loadingAtlasRegions.size)
+                    sprite.setRegion(loadingAtlasRegions.get(aa));
+                else aa=10/0;
                 frameChanger = 0;
             }
         }
         catch (Exception e){
             if (Assets.manager.update()) {
                 Assets.afterLoaded();
+                //aa=0;
+                //sprite.setRegion(loadingAtlasRegions.get(aa)); // tesztelés a crash miatt
                 ((MyGame) Gdx.app.getApplicationListener())
                         .setScreen(new MenuScreen());
             }
