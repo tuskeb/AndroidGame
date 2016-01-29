@@ -1,0 +1,25 @@
+kek.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0
+ rot:false
+ pos:0,0
+ siz:32,32
+ org:32,32
+ off:0,0
+ idx:-1
+1
+ rot:false
+ pos:32,0
+ siz:32,32
+ org:32,32
+ off:0,0
+ idx:-1
+2
+ rot:false
+ pos:64,0
+ siz:32,32
+ org:32,32
+ off:0,0
+ idx:-1
