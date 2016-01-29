@@ -90,7 +90,7 @@ public class LoadingScreen extends MyScreen {
         }
         int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()) - 1);
         try {
-            if (frameChanger > 0.115) {
+            if (frameChanger > 1.115) {
                 aa++;
                 sprite.setRegion(loadingAtlasRegions.get(aa));
                 frameChanger = 0;
@@ -100,7 +100,7 @@ public class LoadingScreen extends MyScreen {
             if (Assets.manager.update()) {
                 Assets.afterLoaded();
                 ((MyGame) Gdx.app.getApplicationListener())
-                        .setScreen(new GameScreen());
+                        .setScreen(new MenuScreen());
             }
         }
         sprite.draw(batch);
