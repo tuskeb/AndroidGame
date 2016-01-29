@@ -19,14 +19,11 @@ public class ParticleActor extends Actor {
 
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions;
 
+    private final boolean state;
+    private boolean finalState;
 
-    final boolean state;
-    boolean finalState;
-
-
-
-    float rotation = (float)(Math.random() * Math.PI);
-    float speed = .5f;
+    private float rotation = (float)(Math.random() * Math.PI);
+    private float speed = .3f;
 
     ParticleActor(boolean bla, float div) {
         this.state = bla;
@@ -43,7 +40,7 @@ sprite.setSize(32, 32);
             setX(div + (float)(Math.random() * (MyScreen.WORLD_WIDTH - div)));
         }
 
-        setY(MyScreen.WORLD_HEIGHT + 10 + (float) (Math.random() * 10) - 5);
+        setY(MyScreen.WORLD_HEIGHT + getHeight() + (float) (Math.random() * 20) - 10);
 
     }
 
@@ -80,7 +77,7 @@ sprite.setSize(32, 32);
     @Override
     protected void positionChanged() {
         super.positionChanged();
-        sprite.setPosition(getX(), getY());
+        sprite.setPosition(getX() - 2, getY());
     }
 
     public boolean isGood() {
@@ -90,7 +87,6 @@ sprite.setSize(32, 32);
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 

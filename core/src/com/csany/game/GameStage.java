@@ -47,7 +47,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     public void moveDivision() {
 
-        div += (newDiv - div) / 10;
+        div += (newDiv - div) / 8;
 
         if((int)div == (int)newDiv) {
             newDiv = (float)Math.random() * MyScreen.WORLD_WIDTH;
@@ -115,17 +115,18 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     private void generateRow() {
 
-        int a = 5;
-        int b = 5;
+        final int count = (int)(playerActor.speed * 1.1f);
 
-        for (int i = a;--i > 0;) {
-            ParticleActor pa = new ParticleActor(true, div);
-            addActor(pa);
-        }
+        ParticleActor pa;
 
-        for (int i = b;--i > 0;) {
-            ParticleActor pa = new ParticleActor(false, div);
+        for (int i = count;--i > 0;) {
+
+            pa = new ParticleActor(true, div);
             addActor(pa);
+
+            pa = new ParticleActor(false, div);
+            addActor(pa);
+
         }
 
     }

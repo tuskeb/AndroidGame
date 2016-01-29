@@ -6,7 +6,6 @@ public class GameScreen extends MyScreen {
     ControlStage controlStage;
 
     GameScreen() {
-
         super();
 
         setBackgroundColor(1,1,1);
