@@ -105,11 +105,9 @@ public class PlayerActor extends Actor {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        renderer.setColor(0, 0, 0, 1);
+        renderer.setColor(.1f, .1f, .1f, 1);
 
-        sprite.draw(batch);
-
-        renderer.circle(getX(), getY(), 5);
+       // renderer.circle(getX(), getY(), 5);
 
         for(Segment segment : segments) {
 

@@ -32,8 +32,6 @@ public class LoadingScreen extends MyScreen {
     }
     Sprite sprite = new Sprite();
 
-
-
     @Override
     public void show() {
         Assets.manager.load(Assets.LOADING_ATLAS);
