@@ -5,20 +5,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 
-public class InterWindow extends MyWindow{
-    public InterWindow(boolean b){
-        super();
-        if (b) showPausedWindow();
-    }
-
-    private void showPausedWindow() {
-
+public class InterWindow extends MyWindow {
+    public InterWindow() {
         setTitle("Játék megállítva!");
 
         MyButton button;
 
 
-        TextButton textButtonNext = new MyButton("Újra",MyWindow.textButtonStyle);
+        TextButton textButtonNext = new MyButton("Újra", MyWindow.textButtonStyle);
         textButtonNext.setSize(180, 60);
         textButtonNext.setPosition(getWidth() / 2 - 90, 30);
 

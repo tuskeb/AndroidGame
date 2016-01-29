@@ -22,9 +22,12 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     private float div = MyScreen.WORLD_WIDTH / 2;
     private float newDiv = 0;
 
+
     Stage stage;
 
-    private InterWindow interWindow;
+    private InterWindow interWindow= null;
+
+    static  boolean INTERBOOLEAN = false;
 
     private int totalParticles = 0, goodParticles = 0;
 
@@ -56,7 +59,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
                 switch (keycode) {
                     case Input.Keys.ESCAPE:
                     case Input.Keys.BACK:
-                        interWindow = new InterWindow(true);
+                        INTERBOOLEAN = true;
                         break;
                 }
                 return false;

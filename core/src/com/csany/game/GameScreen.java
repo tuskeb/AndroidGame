@@ -1,5 +1,6 @@
 package com.csany.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -15,20 +16,29 @@ public class GameScreen extends MyScreen {
         setBackgroundColor(1, 1, 1);
 
 
-        gameStage = new GameStage(viewport, batch){
-            @Override
-            public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.ESCAPE:
-                    case Input.Keys.BACK:
-                        interWindow = new InterWindow(true);
-                        break;
-                }
-                return false;
-            }
+        gameStage = new GameStage(viewport, batch);
 
-        };
         controlStage = new ControlStage(viewport, gameStage);
+
+    }
+
+
+    public void onStateChange() {
+        //System.out.println("state changed: " + gameStage.getState());
+        if (interWindow != null) {
+            interWindow.remove();
+            interWindow = null;
+        }
+
+        if (gameStage.INTERBOOLEAN) {
+            Gdx.input.setInputProcessor(gameStage);
+            return;
+        }
+        interWindow = new InterWindow();
+        controlStage.addActor(interWindow);
+
+        Gdx.input.setInputProcessor(controlStage);
+
 
     }
 
