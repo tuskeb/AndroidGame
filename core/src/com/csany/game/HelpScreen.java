@@ -41,11 +41,15 @@ public class HelpScreen extends MyScreen{
 
         };
 
-        TABLE_SZOVEG1 = new Label(Gdx.files.internal("help.txt").toString(), MyScreen.LABEL_STYLE2);
-        TABLE_NEVERMIND2 = new Label("PROGRAMOZÓK: ", MyScreen.LABEL_STYLE); //30 kar
-        TABLE_SZOVEG2 = new Label("Horváth Bálint\t - \tKönyves Bálint\n Rácz Krisztián\t - \tRuszin Dániel \n Felkészítő tanár: Tüske Balázs", MyScreen.LABEL_STYLE2);
+        TABLE_SZOVEG1 = new Label("A játékmenet során a játékos bizonyos reakcióidejére építve halad előre a játék.\n" +
+                "A karaktert a kijelző oldal-irányba történő döntésével lehet irányítani.\n" +
+                "A játék célja a <piros> és <kék> karakterek egymástól történő szétválasztása,\n" +
+                "amit adott idő alatt kell megfelelő százalékos arányban végrehajtani.\n" +
+                "Rossz oldalnak számít az, amikor például a jobbról érkező karakterek,\n" +
+                " a bal oldalon érkeznek meg, és természetesen ugyanez visszafelé is igaz.\n" +
+                "A százalékérték melletti szám, azokat a karaktereknek a darabszámát jelöli, amik rossz helyre kerültek.", MyScreen.LABEL_STYLE2);
         TABLE_SZOVEG1.setAlignment(Align.center);
-        TABLE_SZOVEG2.setAlignment(Align.center);
+
 
 
 
@@ -59,10 +63,6 @@ public class HelpScreen extends MyScreen{
         table.add(label1).width(500f).height(130f);
         table.row().pad(PUDING);
         table.add(TABLE_SZOVEG1);
-        table.row();
-        table.add(TABLE_NEVERMIND2);
-        table.row().pad(PUDING-15);
-        table.add(TABLE_SZOVEG2);
         table.row();
 
 
