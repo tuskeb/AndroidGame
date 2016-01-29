@@ -4,3 +4,4 @@ A karaktert a kijelző oldal-irányba történő döntésével lehet irányítan
 A játék célja a <piros> és <kék> karakterek egymástól történő szétválasztása, amit adott idő alatt kell megfelelő százalékos arányban végrehajtani.
 A százalékérték mutatja a két oldal arányát, minél magasabb, annál kevesebb karakter van a "rossz" oldalon.
 Rossz oldalnak számít az, amikor például a jobbról érkező karakterek, a bal oldalon érkeznek meg; természetesen ugyanez visszafelé is igaz.
+A százalékérték melletti szám, azokat a karaktereknek a darabszámát jelöli, amik rossz helyre kerültek.
