@@ -41,7 +41,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     private final Texture backgroundTexture;
 
     {
-        backgroundTexture = new Texture(new Pixmap(Gdx.files.internal("mdn_sq.png")));
+        backgroundTexture = new Texture(new Pixmap(Gdx.files.internal("background_b.png")));
         backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     }
 
@@ -84,7 +84,6 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         super.act(delta);
 
         moveDivision();
-
 
         for(Actor actor : getActors()) {
             if(actor instanceof ParticleActor) {

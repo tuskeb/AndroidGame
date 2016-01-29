@@ -48,7 +48,7 @@ public class MenuScreen extends MyScreen{
         camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         viewport = new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
 
-        stage.setViewport(viewport);
+        //stage.setViewport(viewport);
 
         stage = new Stage() {
             @Override
@@ -77,20 +77,21 @@ public class MenuScreen extends MyScreen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                ((MyGame) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
+                ((MyGame) Gdx.app.getApplicationListener())
+                        .setScreen(new GameScreen());
             }
         });
         buttonStart.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
 
         buttonHelp = new MyButton("Súgó", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
-        buttonStart.addListener(new ClickListener() {
+        buttonHelp.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
                 ((MyGame) Gdx.app.getApplicationListener()).setScreen(new HelpScreen());
             }
         });
-        buttonStart.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
+        buttonHelp.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
         stage.addActor(buttonLabel);
         stage.addActor(buttonStart);
         stage.addActor(buttonHelp);

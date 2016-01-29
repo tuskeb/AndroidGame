@@ -108,7 +108,11 @@ public class PlayerActor extends Actor {
         renderer.circle(getX(), getY(), 5);
 
         for(Segment segment : segments) {
-            renderer.rectLine(segment.px, segment.py, segment.x, segment.y, 3);
+
+            renderer.rectLine(
+                    segment.px, segment.py,
+                    segment.x, segment.y,
+                    3);
         }
 
         renderer.end();
