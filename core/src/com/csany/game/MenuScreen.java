@@ -42,7 +42,9 @@ public class MenuScreen extends MyScreen{
 
     public MenuScreen() {
         super();
-        setBackgroundColor(0.3f, 0.8f, 0.9f);
+        //setBackgroundColor(0.3f, 0.8f, 0.9f);
+        //setBackgroundColor(0.761f, 0.761f, 0.761f); szürke
+        setBackgroundColor(0f, 0.259f, 0.145f); //zöld
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
