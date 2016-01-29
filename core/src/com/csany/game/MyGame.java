@@ -13,14 +13,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGame extends Game implements ApplicationListener {
 	SpriteBatch batch;
-	//Texture img;
 
 	public Preferences prefs;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		//img = new Texture("badlogic.jpg");
 
 		prefs = Gdx.app.getPreferences("MyGame");
 
@@ -30,7 +28,6 @@ public class MyGame extends Game implements ApplicationListener {
 		Assets.prepare();
 
 		setScreen(new LoadingScreen());
-		//setScreen(new MenuScreen());
 
 	}
 

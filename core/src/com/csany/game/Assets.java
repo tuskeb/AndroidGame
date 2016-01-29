@@ -32,7 +32,7 @@ public class Assets {
      */
 
     public static final AssetDescriptor<TextureAtlas> LOADING_ATLAS
-            = new AssetDescriptor<TextureAtlas>("loading.atlas", TextureAtlas.class);
+            = new AssetDescriptor<TextureAtlas>("a.atlas", TextureAtlas.class);
 
 
     public static void prepare() {
@@ -45,7 +45,8 @@ public class Assets {
 
     public static void load() {
 
-        // manager.load(Assets.SOMETHING)<--This is the syntax
+        manager.load(Assets.LOADING_ATLAS);
+
     }
 
     public static void afterLoaded() {
