@@ -52,9 +52,9 @@ abstract public class MyWindow extends Window {
 
 
         windowStyle.titleFont = bitmapFont;
-        Sprite sprite = new Sprite(Assets.manager.get(Assets.WINDOW));
-        sprite.setSize(200, 100);
-        windowStyle.background = new SpriteDrawable(sprite);
+        //Sprite sprite = new Sprite(Assets.manager.get(Assets.WINDOW));
+        //sprite.setSize(200, 100);
+        //windowStyle.background = new SpriteDrawable(sprite);
         windowStyle.titleFont = bitmapFont;
         windowStyle.titleFontColor = Color.WHITE;
         Pixmap pixmap = new Pixmap(1,1, Pixmap.Format.RGBA8888);
@@ -69,9 +69,9 @@ abstract public class MyWindow extends Window {
 
         textButtonStyle.font = bitmapFont;
         textButtonStyle.fontColor = Color.WHITE;
-        textButtonStyle.over = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(0)));
-        textButtonStyle.down = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(1)));
-        textButtonStyle.up = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(2)));
+        //textButtonStyle.over = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(0)));
+        //textButtonStyle.down = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(1)));
+        //textButtonStyle.up = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(2)));
 
 
     }
