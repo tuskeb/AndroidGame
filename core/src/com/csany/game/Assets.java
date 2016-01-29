@@ -49,6 +49,8 @@ public class Assets {
 
     public static final AssetDescriptor<TextureAtlas> BUTTON_ATLAS
             = new AssetDescriptor<TextureAtlas>("button.atlas", TextureAtlas.class);
+    public static final AssetDescriptor<TextureAtlas> KEK_ATLAS
+            = new AssetDescriptor<TextureAtlas>("kek.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<Music> PLAYING_MUSIC
             = new AssetDescriptor<Music>("sounds/Beat Loop 120.wav", Music.class);
