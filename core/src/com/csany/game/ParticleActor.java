@@ -20,6 +20,7 @@ public class ParticleActor extends Actor {
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_BLUE = Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions();
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_RED = Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();
 
+
     final boolean state;
     boolean finalState;
 
