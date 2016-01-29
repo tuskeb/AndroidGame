@@ -99,11 +99,11 @@ public class PlayerActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
+        batch.draw(Assets.manager.get(Assets.CR_TEXTURE), getX(), getY());
+
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         renderer.setColor(0, 0, 0, 1);
-
-        sprite.draw(batch);
 
         renderer.circle(getX(), getY(), 5);
 
