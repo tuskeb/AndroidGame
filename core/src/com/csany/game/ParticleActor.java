@@ -29,7 +29,7 @@ public class ParticleActor extends Actor {
     ParticleActor(boolean bla, float div) {
         this.state = bla;
 
-        textureAtlasRegions = bla ? Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions() : Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();;
+        textureAtlasRegions = bla ? Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions() : Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();
 
         sprite = new Sprite(textureAtlasRegions.first());
         animation = new Animation(1 / 3f, textureAtlasRegions, Animation.PlayMode.LOOP);
@@ -89,8 +89,11 @@ public class ParticleActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+/*
+        batch.draw(new Texture(Gdx.files.internal("a.png")), getX(), getY(), 30, 30);
 
         sprite.draw(batch);
+*/
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         if(this.state) renderer.setColor(0, 0, 1, 1);

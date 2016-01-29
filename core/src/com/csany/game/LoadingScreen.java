@@ -32,8 +32,6 @@ public class LoadingScreen extends MyScreen {
     }
     Sprite sprite = new Sprite();
 
-
-
     @Override
     public void show() {
         Assets.manager.load(Assets.LOADING_ATLAS);
@@ -42,7 +40,7 @@ public class LoadingScreen extends MyScreen {
         sprite.setSize(loadingAtlasRegions.get(0).getRegionWidth(), loadingAtlasRegions.get(0).getRegionHeight());
         sprite.setPosition(MyScreen.WORLD_WIDTH/2-sprite.getWidth()/2,MyScreen.WORLD_HEIGHT/2-sprite.getHeight()/2);
         camera = new OrthographicCamera(1024,768);
-        camera.translate(512,384);
+        camera.translate(512, 384);
         viewport = new ExtendViewport(1024, 768, camera);
         stage = new Stage(viewport) {
 
@@ -100,7 +98,7 @@ public class LoadingScreen extends MyScreen {
             if (Assets.manager.update()) {
                 Assets.afterLoaded();
                 ((MyGame) Gdx.app.getApplicationListener())
-                        .setScreen(new GameScreen());
+                        .setScreen(new MenuScreen());
             }
         }
         sprite.draw(batch);
