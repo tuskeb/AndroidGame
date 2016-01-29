@@ -161,13 +161,13 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     @Override
     public void draw() {
-        spriteBatch.begin();
 
+        spriteBatch.begin();
         spriteBatch.draw(backgroundTexture, 0, 0, MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, 0, 0, 60, 60);
         spriteBatch.end();
+
         super.draw();
 
-        // EZ EGY VICC!
         getBatch().begin();
         getBatch().draw(Assets.manager.get(Assets.CR_TEXTURE), playerActor.getX() - 16, playerActor.getY() - 30);
         getBatch().end();
