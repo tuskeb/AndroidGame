@@ -1,5 +1,6 @@
 package com.csany.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
@@ -11,27 +12,41 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
 
 
+
     PlayerActor playerActor = new PlayerActor();
+
+    float h = 0;
 
     public GameStage(Viewport viewport, Batch batch) {
         super(viewport, batch);
 
         addActor(playerActor);
 
-        for(int i = 0;i<40;i++) {
-        addActor(new ParticleActor());
-        }
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
 
+        h += playerActor.speed;
+
         for(Actor actor : getActors()) {
-            if(actor instanceof ParticleActor) {
-                ParticleActor pa = (ParticleActor)actor;
-                pa.setY(pa.getY() - 0.1f);
+           // if(actor instanceof ParticleActor) {
+                //ParticleActor pa = (ParticleActor)actor;
+            actor.setY(actor.getY() - playerActor.speed);
+            if(actor.getY() < 0) {
+                actor.remove();
             }
+            //}
+        }
+
+        if(h > 50) {
+            h = 0;
+            for (int i = 0;i<5;i++) {
+
+            addActor(new ParticleActor());
+            }
+
         }
 
     }

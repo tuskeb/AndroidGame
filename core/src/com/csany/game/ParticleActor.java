@@ -7,12 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class ParticleActor extends Actor {
 
-
     ShapeRenderer renderer = new ShapeRenderer();
 
     ParticleActor() {
         setX((float)(Math.random() * Gdx.graphics.getWidth()));
-        setY((float)(Math.random() * Gdx.graphics.getHeight()));
+        setY(Gdx.graphics.getHeight() - 50);
     }
 
     @Override
