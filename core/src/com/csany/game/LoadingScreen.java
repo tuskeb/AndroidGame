@@ -21,6 +21,9 @@ import javafx.scene.Camera;
 public class LoadingScreen extends MyScreen {
 
     Stage stage;
+    float frameChanger;
+    int aa;
+    boolean teszt=false;
 
     Array<TextureAtlas.AtlasRegion> loadingAtlasRegions;
     public LoadingScreen() {
@@ -76,20 +79,31 @@ public class LoadingScreen extends MyScreen {
         //super.render(delta);
         Gdx.gl.glClearColor(r, g, b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if (Assets.manager.update()) {
-            Assets.afterLoaded();
-            ((MyGame) Gdx.app.getApplicationListener())
-                    .setScreen(new MenuScreen()); //.setScreen(new GameScreen());
-        }
+
+        frameChanger+=delta;
 
         //stage.act();
         batch.begin();
-        sprite.setRegion(loadingAtlasRegions.get(0));
+        if (!teszt) {
+            sprite.setRegion(loadingAtlasRegions.get(0));
+            teszt = true;
+        }
         int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()*1.5f) - 1);
-
-        sprite.setRegion(loadingAtlasRegions.get(Math.min(Math.max(0, i), loadingAtlasRegions.size - 1)));
+        try {
+            if (frameChanger > 0.25) {
+                aa++;
+                sprite.setRegion(loadingAtlasRegions.get(aa));
+                frameChanger = 0;
+            }
+        }
+        catch (Exception e){
+            if (Assets.manager.update()) {
+                Assets.afterLoaded();
+                ((MyGame) Gdx.app.getApplicationListener())
+                        .setScreen(new MenuScreen()); //.setScreen(new GameScreen());
+            }
+        }
         sprite.draw(batch);
-
         //stage.draw();
         batch.end();
 
