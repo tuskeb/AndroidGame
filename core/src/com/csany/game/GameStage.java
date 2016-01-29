@@ -14,6 +14,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
 
+    public static int ROWS= 5;
+
     private PlayerActor playerActor = new PlayerActor();
 
     private float nextRow = 0;
@@ -92,7 +94,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
                     if(!pa.isFreezed()) {
                         totalParticles += 1;
 
-                        pa.freeze(playerActor.getX());
+                        pa.freeze(playerActor.getX(), playerActor.movement);
 
                     }
                 }
@@ -105,23 +107,23 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
             }
         }
 
-        for (PlayerActor.Segment segment : playerActor.segments) {
+        for (PlayerActor.Segment segment : playerActor.getSegments()) {
             segment.y -= playerActor.speed;
             segment.py -= playerActor.speed;
         }
 
-        while(playerActor.segments.size() > 0) {
-            PlayerActor.Segment last = playerActor.segments.get(0);
+        while(playerActor.getSegments().size() > 0) {
+            PlayerActor.Segment last = playerActor.getSegments().get(0);
 
             if(last.y < 0) {
-                playerActor.segments.remove(0);
+                playerActor.getSegments().remove(0);
             } else break;
         }
 
 
         nextRow -= playerActor.speed;
         if(nextRow < 0) {
-            nextRow = MyScreen.WORLD_HEIGHT / 5;
+            nextRow = MyScreen.WORLD_HEIGHT / ROWS;
 
             generateRow();
 
@@ -135,11 +137,9 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     private void generateRow() {
 
-        final int count = (int)(playerActor.speed * 1.1f);
-
         ParticleActor pa;
 
-        for (int i = count;--i > 0;) {
+        for (int i = (int)(Math.random() * 7) + 2;--i > 0;) {
 
             pa = new ParticleActor(true, div);
             addActor(pa);

@@ -1,6 +1,7 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,8 +15,22 @@ import java.util.ArrayList;
 public class PlayerActor extends Actor {
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_YELLOW = Assets.manager.get(Assets.YELLOW_PARTICLE_ATLAS).getRegions();
 
-    Sprite sprite;
-    Animation animation;
+
+    PlayerActor() {
+
+        sprite = new Sprite(textureAtlasRegions_YELLOW.first());
+        sprite.setRegion(textureAtlasRegions_YELLOW.first());
+        animation = new Animation(1 / 30f, textureAtlasRegions_YELLOW, Animation.PlayMode.LOOP);
+        setSize(32, 32);
+
+        setX(MyScreen.WORLD_WIDTH / 2);
+        setY(150);
+
+
+    }
+
+    private Sprite sprite;
+    private Animation animation;
 
     class Segment {
         float x, y;
@@ -28,15 +43,19 @@ public class PlayerActor extends Actor {
         }
     }
 
-    ArrayList<Segment> segments = new ArrayList<Segment>();
+    private ArrayList<Segment> segments = new ArrayList<Segment>();
 
-    ShapeRenderer renderer = new ShapeRenderer();
+    private ShapeRenderer renderer = new ShapeRenderer();
 
     float movement = 0;
     float speed = 5f;
     int i = 0;
 
     private float stateTime = 0;
+
+    public ArrayList<Segment> getSegments() {
+        return segments;
+    }
 
     @Override
     public void act(float delta) {
@@ -51,6 +70,7 @@ public class PlayerActor extends Actor {
                 break;
             case Desktop:
                 movement = (Gdx.input.getX() - getX()) / 10;
+               // speed = 5 + Gdx.input.getAccelerometerX() / 2;
                 break;
         }
 
@@ -74,19 +94,6 @@ public class PlayerActor extends Actor {
     protected void positionChanged() {
         super.positionChanged();
         sprite.setPosition(getX(), getY());
-    }
-
-    PlayerActor() {
-
-        sprite = new Sprite(textureAtlasRegions_YELLOW.first());
-        sprite.setRegion(textureAtlasRegions_YELLOW.first());
-        animation = new Animation(1 / 30f, textureAtlasRegions_YELLOW, Animation.PlayMode.LOOP);
-        setSize(32, 32);
-
-        setX(MyScreen.WORLD_WIDTH / 2);
-        setY(150);
-
-
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -22,7 +23,7 @@ public class ParticleActor extends Actor {
     private final boolean state;
     private boolean finalState;
 
-    private float rotation = (float)(Math.random() * Math.PI);
+    private float rotation = (float)Math.PI + (float)(Math.random() * Math.PI);
     private float speed = .3f;
 
     ParticleActor(boolean bla, float div) {
@@ -32,7 +33,7 @@ public class ParticleActor extends Actor {
 
         sprite = new Sprite(textureAtlasRegions.first());
         animation = new Animation(1 / 3f, textureAtlasRegions, Animation.PlayMode.LOOP);
-sprite.setSize(32, 32);
+        sprite.setSize(32, 32);
 
         if(this.state) {
             setX((float)(Math.random() * div));
@@ -40,7 +41,7 @@ sprite.setSize(32, 32);
             setX(div + (float)(Math.random() * (MyScreen.WORLD_WIDTH - div)));
         }
 
-        setY(MyScreen.WORLD_HEIGHT + getHeight() + (float) (Math.random() * 20) - 10);
+        setY(MyScreen.WORLD_HEIGHT + (MyScreen.WORLD_HEIGHT / GameStage.ROWS) + (float) (Math.random() * MyScreen.WORLD_HEIGHT / GameStage.ROWS * 2) - (MyScreen.WORLD_HEIGHT / GameStage.ROWS));
 
     }
 
@@ -52,24 +53,26 @@ sprite.setSize(32, 32);
         return freezed;
     }
 
-    public void freeze(float div) {
+    private float impulse;
+
+    public void freeze(float div, float impulse) {
         freezed = true;
         finalState = getX() < div;
+        this.impulse = Math.abs(impulse) * (finalState ? -1f : 1f);
     }
-
-    private final static float MOVING = 2;
 
     @Override
     public void act(float delta) {
         super.act(delta);
 
+        stateTime += delta;
+        sprite.setRegion(animation.getKeyFrame(stateTime));
+
         if(!freezed) {
-            stateTime += delta;
-            sprite.setRegion(animation.getKeyFrame(stateTime));
             setX(getX() + (float)Math.cos(rotation) * speed);
             setY(getY() + (float)Math.sin(rotation) * speed);
         } else {
-            setX(getX() + (finalState ? -MOVING : MOVING));
+            setX(getX() + impulse / 7);
         }
 
     }
@@ -77,7 +80,7 @@ sprite.setSize(32, 32);
     @Override
     protected void positionChanged() {
         super.positionChanged();
-        sprite.setPosition(getX() - 2, getY());
+        sprite.setPosition(getX(), getY());
     }
 
     public boolean isGood() {
@@ -86,18 +89,16 @@ sprite.setSize(32, 32);
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
 
+        sprite.draw(batch);
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         if(this.state) renderer.setColor(0, 0, 1, 1);
         else renderer.setColor(1, 0, 0, 1);
 
-        renderer.circle(getX() - 2, getY() - 2, 4);
+        renderer.circle(getX() - 2, getY() - 2, 5);
 
         renderer.end();
-
-        sprite.draw(batch);
 
 
     }
