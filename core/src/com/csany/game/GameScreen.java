@@ -20,10 +20,14 @@ public class GameScreen extends MyScreen {
         super.render(delta);
 
         gameStage.act(delta);
+       // batch.begin();
         gameStage.draw();
+
+       // batch.end();
 
         controlStage.act(delta);
         controlStage.draw();
+
 
     }
 }
