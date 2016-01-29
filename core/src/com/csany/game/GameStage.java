@@ -12,8 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
+public static int ROWS = 5;
 
-    private PlayerActor playerActor = new PlayerActor();
+    private PlayerActor playerActor ;
 
     private float nextRow = 0;
     private float div = MyScreen.WORLD_WIDTH / 2;
@@ -39,9 +40,9 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     public GameStage(Viewport viewport, Batch batch) {
         super(viewport, batch);
-
+playerActor = new PlayerActor();
         addActor(playerActor);
-
+        addActor(new ParticleActor(true, div));
 
     }
 
@@ -72,7 +73,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
                     if(!pa.isFreezed()) {
                         totalParticles += 1;
 
-                        pa.freeze(playerActor.getX());
+                        pa.freeze(playerActor.getX(), playerActor.movement);
 
                     }
                 }
@@ -85,23 +86,23 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
             }
         }
 
-        for (PlayerActor.Segment segment : playerActor.segments) {
+        for (PlayerActor.Segment segment : playerActor.getSegments()) {
             segment.y -= playerActor.speed;
             segment.py -= playerActor.speed;
         }
 
-        while(playerActor.segments.size() > 0) {
-            PlayerActor.Segment last = playerActor.segments.get(0);
+        while(playerActor.getSegments().size() > 0) {
+            PlayerActor.Segment last = playerActor.getSegments().get(0);
 
             if(last.y < 0) {
-                playerActor.segments.remove(0);
+                playerActor.getSegments().remove(0);
             } else break;
         }
 
 
         nextRow -= playerActor.speed;
         if(nextRow < 0) {
-            nextRow = MyScreen.WORLD_HEIGHT / 5;
+            nextRow = MyScreen.WORLD_HEIGHT / ROWS;
 
             generateRow();
 
@@ -115,17 +116,16 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     private void generateRow() {
 
-        final int count = (int)(playerActor.speed * 1.1f);
+        for (int i = (int)(Math.random() * 8) + 2;--i > 0;) {
+            {
+                ParticleActor pa = new ParticleActor(true, div);
+                addActor(pa);
+            }
 
-        ParticleActor pa;
-
-        for (int i = count;--i > 0;) {
-
-            pa = new ParticleActor(true, div);
-            addActor(pa);
-
-            pa = new ParticleActor(false, div);
-            addActor(pa);
+            {
+                ParticleActor pa = new ParticleActor(false, div);
+                addActor(pa);
+            }
 
         }
 
@@ -142,14 +142,14 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     @Override
     public void draw() {
+/*
         spriteBatch.begin();
 
         spriteBatch.draw(backgroundTexture, 0, 0, MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, 0, 0, 60, 60);
         spriteBatch.end();
+*/
+
         super.draw();
-
-
-
 
     }
 
