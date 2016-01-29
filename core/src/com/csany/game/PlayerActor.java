@@ -6,18 +6,16 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class PlayerActor extends Actor {
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_YELLOW = Assets.manager.get(Assets.YELLOW_PARTICLE_ATLAS).getRegions();
 
-    Sprite sprite; Animation animation;
+    Sprite sprite;
+    Animation animation;
 
     class Segment {
         float x, y;
@@ -38,9 +36,14 @@ public class PlayerActor extends Actor {
     float speed = 5f;
     int i = 0;
 
+    private float stateTime = 0;
+
     @Override
     public void act(float delta) {
         super.act(delta);
+        stateTime += delta;
+
+        sprite.setRegion(animation.getKeyFrame(stateTime));
 
         switch (Gdx.app.getType()) {
             case Android:
@@ -67,9 +70,23 @@ public class PlayerActor extends Actor {
 
     }
 
+    @Override
+    protected void positionChanged() {
+        super.positionChanged();
+        sprite.setPosition(getX(), getY());
+    }
+
     PlayerActor() {
+
+        sprite = new Sprite(textureAtlasRegions_YELLOW.first());
+        sprite.setRegion(textureAtlasRegions_YELLOW.first());
+        animation = new Animation(1 / 30f, textureAtlasRegions_YELLOW, Animation.PlayMode.LOOP);
+        setSize(32, 32);
+
         setX(Gdx.graphics.getWidth() / 2);
         setY(150);
+
+
     }
 
     @Override
@@ -77,18 +94,14 @@ public class PlayerActor extends Actor {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        //renderer.setColor(0, 0, 0, 1);
-        sprite = new Sprite(textureAtlasRegions_YELLOW.first());
-        sprite.setRegion(textureAtlasRegions_YELLOW.first());
-        animation = new Animation(1 / 30f, textureAtlasRegions_YELLOW, Animation.PlayMode.LOOP);
-        setSize(0.5f, 0.5f);
-        setTouchable(Touchable.disabled);
+        renderer.setColor(0, 0, 0, 1);
+
+        sprite.draw(batch);
 
         renderer.circle(getX(), getY(), 5);
 
         for(Segment segment : segments) {
             renderer.rectLine(segment.px, segment.py, segment.x, segment.y, 3);
-
         }
 
         renderer.end();

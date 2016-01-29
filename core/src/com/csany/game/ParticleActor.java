@@ -12,13 +12,12 @@ import com.badlogic.gdx.utils.Array;
 
 public class ParticleActor extends Actor {
 
-    ShapeRenderer renderer = new ShapeRenderer();
-    float stateTime =0;
-    Sprite sprite;
-    Animation animation;
+    private ShapeRenderer renderer = new ShapeRenderer();
+    private float stateTime =0;
+    private  Sprite sprite;
+    private  Animation animation;
 
-    final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_BLUE = Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions();
-    final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_RED = Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();
+    final Array<TextureAtlas.AtlasRegion> textureAtlasRegions;
 
 
     final boolean state;
@@ -32,34 +31,22 @@ public class ParticleActor extends Actor {
     ParticleActor(boolean bla, float div) {
         this.state = bla;
 
+        textureAtlasRegions = bla ? Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions() : Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();;
+
+        sprite = new Sprite(textureAtlasRegions.first());
+        animation = new Animation(1 / 30f, textureAtlasRegions, Animation.PlayMode.LOOP);
+
         if(this.state) {
             setX((float)(Math.random() * div));
         } else {
             setX(div + (float)(Math.random() * (Gdx.graphics.getWidth() - div)));
         }
 
-        setY(Gdx.graphics.getHeight() + 10 + (float)(Math.random() * 10) - 5);
-
-        if(bla) kekRainy();
-        else pirosRainy();
+        setY(Gdx.graphics.getHeight() + 10 + (float) (Math.random() * 10) - 5);
 
     }
 
-    private void kekRainy(){ //Ha nem tetszik, akkor Refactor
-        sprite = new Sprite(textureAtlasRegions_BLUE.first());
-        sprite.setRegion(textureAtlasRegions_BLUE.first());
-        animation = new Animation(1 / 30f, textureAtlasRegions_BLUE, Animation.PlayMode.LOOP);
-        setSize(0.5f, 0.5f);
-        setTouchable(Touchable.disabled);
-    }
 
-    private  void pirosRainy(){
-        sprite = new Sprite(textureAtlasRegions_RED.first());
-        sprite.setRegion(textureAtlasRegions_RED.first());
-        animation = new Animation(1 / 30f, textureAtlasRegions_RED, Animation.PlayMode.LOOP);
-        setSize(0.5f, 0.5f);
-        setTouchable(Touchable.disabled);
-    }
 
     private boolean freezed = false;
 
@@ -82,32 +69,18 @@ public class ParticleActor extends Actor {
             stateTime += delta;
             sprite.setRegion(animation.getKeyFrame(stateTime));
             setX(getX() + (float)Math.cos(rotation) * speed);
-            setY(getY() + (float) Math.sin(rotation) * speed);
+            setY(getY() + (float)Math.sin(rotation) * speed);
         } else {
             setX(getX() + (finalState ? -MOVING : MOVING));
         }
-/* stateTime += delta;
 
-		sprite.setRegion(animation.getKeyFrame(stateTime));
-
-		if(!hasCollected) super.act(delta);
-		else {
-			deactivate();
-			final float oldWidth = getWidth();
-			setSize(getWidth() * 1.05f, getHeight() * 1.05f);
-			setPosition(getX() - (getWidth() - oldWidth) / 2, getY() - (getWidth() - oldWidth) / 2);
-            final float alpha = sprite.getColor().a*0.95f;
-            if(alpha < 0.1f) {
-                delete();
-            }
-
-			sprite.setAlpha(alpha);
-			//sprite.setColor(0,0,0,sprite.getColor().a*0.95f);
-
-			//setVisible(false);
-		}*/
     }
 
+    @Override
+    protected void positionChanged() {
+        super.positionChanged();
+        sprite.setPosition(30, 30);
+    }
 
     public boolean isGood() {
         return state == finalState;
@@ -117,6 +90,7 @@ public class ParticleActor extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
+
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         if(this.state) renderer.setColor(0, 0, 1, 1);
@@ -125,6 +99,9 @@ public class ParticleActor extends Actor {
         renderer.circle(getX() - 2, getY() - 2, 4);
 
         renderer.end();
+
+        sprite.draw(batch);
+
 
     }
 }
