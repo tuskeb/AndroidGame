@@ -31,8 +31,12 @@ public class Assets {
 
      */
 
+
     public static final AssetDescriptor<TextureAtlas> BLUE_PARTICLE_ATLAS
             = new AssetDescriptor<TextureAtlas>("kek.atlas", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> LOADING_ATLAS
+            = new AssetDescriptor<TextureAtlas>("loading.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> RED_PARTICLE_ATLAS
             = new AssetDescriptor<TextureAtlas>("piros.atlas", TextureAtlas.class);
@@ -40,8 +44,6 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> YELLOW_PARTICLE_ATLAS
             = new AssetDescriptor<TextureAtlas>("sarga.atlas", TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> LOADING_ATLAS
-            = new AssetDescriptor<TextureAtlas>("loading.atlas", TextureAtlas.class);
 
 
     public static void prepare() {
