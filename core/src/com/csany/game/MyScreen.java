@@ -44,7 +44,7 @@ public class MyScreen implements Screen {
 
 	}*/
 
-    /*
+
     static {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));
@@ -55,7 +55,7 @@ public class MyScreen implements Screen {
         FONT_HOBO_STD.setColor(0, 0, 0, 1f);
         generator.dispose();
     }
-    */
+
 
 	/*static {
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));

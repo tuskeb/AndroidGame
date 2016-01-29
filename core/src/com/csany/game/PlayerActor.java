@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class PlayerActor extends Actor {
 
     class Segment {
-        final float x, y;
-final float px, py;
+        float x, y;
+        float px, py;
         public Segment(float x, float y) {
             this.x = x;
             this.y = y;
@@ -42,16 +42,13 @@ final float px, py;
                 //world.setGravity(new Vector2(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX()));
                 break;
             case Desktop:
-            {
-                //angle = (float)Math.atan2(Gdx.input.getY() - y,  Gdx.input.getX() - x);
-                if(Gdx.input.getX() > x)
-                angle += .01;
-                else angle -= .01;
-
-            }
+                angle = (float)Math.atan2(Gdx.input.getY() - getY(),  Gdx.input.getX() - getX());
+                break;
         }
 
-        segments.add(new Segment(x, y));
+        //segments.add(new Segment(x, y));
+
+        setX(getX() + (float)Math.cos(angle) * speed);
 
         prevX = x;
         prevY = y;
@@ -60,12 +57,19 @@ final float px, py;
 
     }
 
+    PlayerActor() {
+        setX(Gdx.graphics.getWidth() / 2);
+        setY(150);
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        renderer.setColor(1, 1, 0, 1);
+        renderer.setColor(0, 0, 0, 1);
+
+        renderer.circle(getX(), getY(), 3);
 
         for(Segment segment : segments) {
             renderer.rectLine(segment.px, segment.py, segment.x, segment.y, 3);
