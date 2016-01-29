@@ -1,18 +1,48 @@
 package com.csany.game;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by Android on 2016.01.29..
- */
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
+
+
+    PlayerActor playerActor = new PlayerActor();
 
     public GameStage(Viewport viewport, Batch batch) {
         super(viewport, batch);
+
+        addActor(playerActor);
+
+        for(int i = 0;i<40;i++) {
+        addActor(new ParticleActor());
+        }
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        for(Actor actor : getActors()) {
+            if(actor instanceof ParticleActor) {
+                ParticleActor pa = (ParticleActor)actor;
+                pa.setY(pa.getY() - 0.1f);
+            }
+        }
+
+    }
+
+
+    @Override
+    public void draw() {
+        super.draw();
+
+
+
     }
 
     @Override

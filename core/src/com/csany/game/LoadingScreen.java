@@ -78,7 +78,7 @@ public class LoadingScreen extends MyScreen {
         if (Assets.manager.update()) {
             Assets.afterLoaded();
             ((MyGame) Gdx.app.getApplicationListener())
-                    .setScreen(new MenuScreen());
+                    .setScreen(new GameScreen());
         }
         //stage.act();
         batch.begin();
