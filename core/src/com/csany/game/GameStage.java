@@ -1,6 +1,7 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -19,6 +20,10 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     private float div = MyScreen.WORLD_WIDTH / 2;
     private float newDiv = 0;
 
+    Stage stage;
+
+    private InterWindow interWindow;
+
     private int totalParticles = 0, goodParticles = 0;
 
     public float getStat() {
@@ -27,6 +32,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         } else {
             return 1;
         }
+
     }
 
 
@@ -41,6 +47,20 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         super(viewport, batch);
 
         addActor(playerActor);
+
+        stage = new Stage() {
+            @Override
+            public boolean keyDown(int keycode) {
+                switch (keycode) {
+                    case Input.Keys.ESCAPE:
+                    case Input.Keys.BACK:
+                        interWindow = new InterWindow(true);
+                        break;
+                }
+                return false;
+            }
+
+        };
 
 
     }

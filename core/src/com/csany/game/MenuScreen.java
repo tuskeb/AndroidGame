@@ -53,56 +53,45 @@ public class MenuScreen extends MyScreen{
 
 
 
-        MyButton button, buttonLabel; Skin skin = new Skin();
+        MyButton button, buttonLabel, buttonHelp; Skin skin = new Skin();
 
         //Sprite sprite = new Sprite(Assets.manager.get(Assets.PLAY));
         //sprite.setPosition(487, 265);
+
+        buttonLabel = new MyButton("Endless Ball Running - The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);//Ez volt a legegyzerűbb, ha nem adok neki funkkciót,de ott van....
+        buttonLabel.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+
         button = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //TODO setScreen Game
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
                 // ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
             }
         });
-        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
 
-        buttonLabel = new MyButton("Endless Ball Running - The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
-        buttonLabel.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH/2f);
-        stage.addActor(buttonLabel);
-
-
-        //button = new MyButton("Endless Ball Running\n The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
-        stage.addActor(button);
-
-
-
-
-/*
-        actor = new BallActor();
-        actor.setSize(128, 128);
-        //camera = new OrthographicCamera(1024,768);
-        camera = new OrthographicCamera(MyScreen.WORLD_WIDTH,MyScreen.WORLD_HEIGHT);
-        camera.translate(MyScreen.WORLD_WIDTH/2,MyScreen.WORLD_HEIGHT/2);
-        viewport = new ExtendViewport(MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, camera);
-
-        stage.setViewport(viewport);
-
-        MenuBackgroundActor menuBackgroundActor = new MenuBackgroundActor();
-        menuBackgroundActor.setPosition(0, 0);
-        menuBackgroundActor.setSize(MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT);
-        stage.addActor(menuBackgroundActor);
-        button = new MyButton("Play", MyWindow.textButtonStyle);
+        buttonHelp = new MyButton("Súgó", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new HelpScreen());
+                // ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
             }
         });
-        button.setPosition(MyScreen.WORLD_WIDTH*0.7f,MyScreen.WORLD_HEIGHT*0.3f);
-*/
+        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f -buttonLabel.getHeight());
+        stage.addActor(buttonLabel);
+        stage.addActor(button);
+        stage.addActor(buttonHelp);
 
-       // stage.addActor(button);
+
+
+        //button = new MyButton("Endless Ball Running\n The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
+
+
+
+
+
     }
 
     @Override
