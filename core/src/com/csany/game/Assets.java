@@ -50,6 +50,15 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> BUTTON_ATLAS
             = new AssetDescriptor<TextureAtlas>("button.atlas", TextureAtlas.class);
 
+    public static final AssetDescriptor<Music> PLAYING_MUSIC
+            = new AssetDescriptor<Music>("sounds/Beat Loop 120.wav", Music.class);
+
+    public static final AssetDescriptor<Music> MENU_MUSIC
+            = new AssetDescriptor<Music>("sounds/Space Travel.mp3", Music.class);
+
+
+
+
 
 
 
@@ -67,11 +76,14 @@ public class Assets {
         manager.load(Assets.YELLOW_PARTICLE_ATLAS);
         manager.load(Assets.WINDOW);
         manager.load(Assets.BUTTON_ATLAS);
+        manager.load(Assets.PLAYING_MUSIC);
+        manager.load(Assets.MENU_MUSIC);
         //manager.load(Assets.SOMETHING)<--This is the syntax
     }
 
     public static void afterLoaded() {
-
+        manager.get(PLAYING_MUSIC).setLooping(true);
+        manager.get(MENU_MUSIC).setLooping(true);
     }
 
     public static void unload() {

@@ -1,4 +1,3 @@
-S Ú G Ó
 A játékmenet során a játékos bizonyos reakcióidejére építve halad előre a játék.
 A karaktert a kijelző oldal-irányba történő döntésével lehet irányítani.
 A játék célja a <piros> és <kék> karakterek egymástól történő szétválasztása, amit adott idő alatt kell megfelelő százalékos arányban végrehajtani.

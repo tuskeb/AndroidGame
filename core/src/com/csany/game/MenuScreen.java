@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.AlphaAction;
@@ -28,14 +31,24 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /** A játék menüje*/
 public class MenuScreen extends MyScreen{
     Stage stage;
-    //private final Music music = Assets.manager.get(Assets.MENU_MUSIC);
+    private final Music music = Assets.manager.get(Assets.MENU_MUSIC);
 
     GameActor actor;
+
+    Texture backgroundTexture = new Texture(Gdx.files.internal("background.png"));
+    Sprite backgroundSprite =new Sprite(backgroundTexture);
+
 
 
     public MenuScreen() {
         super();
         setBackgroundColor(0.3f, 0.8f, 0.9f);
+
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+        viewport = new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
+
+        stage.setViewport(viewport);
 
         stage = new Stage() {
             @Override
@@ -53,46 +66,50 @@ public class MenuScreen extends MyScreen{
 
 
 
-        MyButton button, buttonLabel, buttonHelp; Skin skin = new Skin();
+        MyButton buttonStart, buttonLabel, buttonHelp; Skin skin = new Skin();
 
-        //Sprite sprite = new Sprite(Assets.manager.get(Assets.PLAY));
-        //sprite.setPosition(487, 265);
 
         buttonLabel = new MyButton("Endless Ball Running - The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);//Ez volt a legegyzerűbb, ha nem adok neki funkkciót,de ott van....
         buttonLabel.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
 
-        button = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
-        button.addListener(new ClickListener() {
+        buttonStart = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
+        buttonStart.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
-                // ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
+
+                ((MyGame) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
-        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
+        buttonStart.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
 
         buttonHelp = new MyButton("Súgó", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
-        button.addListener(new ClickListener() {
+        buttonStart.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new HelpScreen());
-                // ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
+
+                ((MyGame) Gdx.app.getApplicationListener()).setScreen(new HelpScreen());
             }
         });
-        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f -buttonLabel.getHeight());
+        buttonStart.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
         stage.addActor(buttonLabel);
-        stage.addActor(button);
+        stage.addActor(buttonStart);
         stage.addActor(buttonHelp);
 
 
 
-        //button = new MyButton("Endless Ball Running\n The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
+
 
 
 
 
 
     }
+
+    public void renderBackground() {
+        backgroundSprite.draw(batch);
+    }
+
+
 
     @Override
     public void resize(int width, int height) {
@@ -108,29 +125,34 @@ public class MenuScreen extends MyScreen{
         viewport = new ExtendViewport(MyScreen.WORLD_WIDTH,MyScreen.WORLD_HEIGHT, camera);
         stage.setViewport(viewport);
         stage.getCamera().update();
-*/
+        */
     }
 
 
     @Override
     public void hide() {
         super.hide();
-        //music.pause();
+        music.pause();
     }
 
     @Override
     public void show() {
-        //music.play();
+        music.play();
         Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        renderBackground();
         Gdx.gl.glClearColor(0, 0, 0, 0);
         stage.act(delta);
         stage.draw();
         batch.end();
     }
+
 }
