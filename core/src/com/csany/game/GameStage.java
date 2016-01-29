@@ -167,7 +167,10 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         spriteBatch.end();
         super.draw();
 
-
+        // EZ EGY VICC!
+        getBatch().begin();
+        getBatch().draw(Assets.manager.get(Assets.CR_TEXTURE), playerActor.getX() - 16, playerActor.getY() - 30);
+        getBatch().end();
 
 
     }

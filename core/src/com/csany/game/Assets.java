@@ -31,7 +31,6 @@ public class Assets {
 
      */
 
-
     public static final AssetDescriptor<Texture> CR_TEXTURE
             = new AssetDescriptor<Texture>("a.png", Texture.class);
 
@@ -67,7 +66,6 @@ public class Assets {
         Texture.setAssetManager(manager);
 
     }
-
 
     public static void load() {
         manager.load(Assets.CR_TEXTURE);

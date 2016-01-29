@@ -99,13 +99,11 @@ public class PlayerActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
-        batch.draw(Assets.manager.get(Assets.CR_TEXTURE), getX(), getY());
-
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        renderer.setColor(0, 0, 0, 1);
+        renderer.setColor(.1f, .1f, .1f, 1);
 
-        renderer.circle(getX(), getY(), 5);
+       // renderer.circle(getX(), getY(), 5);
 
         for(Segment segment : segments) {
 
