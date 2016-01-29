@@ -38,13 +38,17 @@ public class ParticleActor extends Actor {
         finalState = getX() < div;
     }
 
+    private final static float MOVING = 2;
+
     @Override
     public void act(float delta) {
         super.act(delta);
 
         if(!freezed) {
-        setX(getX() + (float)Math.cos(rotation) * speed);
+            setX(getX() + (float)Math.cos(rotation) * speed);
             setY(getY() + (float) Math.sin(rotation) * speed);
+        } else {
+            setX(getX() + (finalState ? -MOVING : MOVING));
         }
 
     }
@@ -63,7 +67,7 @@ public class ParticleActor extends Actor {
         if(this.state) renderer.setColor(0, 0, 1, 1);
         else renderer.setColor(1, 0, 0, 1);
 
-        renderer.circle(getX(), getY(), 3);
+        renderer.circle(getX() - 5, getY() - 5, 10);
 
         renderer.end();
 

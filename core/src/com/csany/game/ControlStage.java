@@ -16,7 +16,7 @@ public class ControlStage extends Stage {
 
     public ControlStage(Viewport viewport, GameStage gameStage) {
         super(viewport, new SpriteBatch());
-    batch = (SpriteBatch)getBatch();
+        batch = (SpriteBatch)getBatch();
 
         this.gameStage = gameStage;
     }

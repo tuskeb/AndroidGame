@@ -72,12 +72,12 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
             }
         }
 
-        for (PlayerActor.Segment segment : playerActor.segments) {
+        /*for (PlayerActor.Segment segment : playerActor.segments) {
             segment.y -= playerActor.speed;
             segment.x -= playerActor.speed;
             segment.px -= playerActor.speed;
             segment.py -= playerActor.speed;
-        }
+        }*/
 
         if(h > 100) {
             h = 0;
