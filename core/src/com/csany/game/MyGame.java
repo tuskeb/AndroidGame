@@ -29,8 +29,9 @@ public class MyGame extends Game implements ApplicationListener {
 
 		Assets.prepare();
 
-		setScreen(new LoadingScreen());
+		//setScreen(new LoadingScreen());
 		//setScreen(new MenuScreen());
+		setScreen(new GameScreen());
 
 	}
 
