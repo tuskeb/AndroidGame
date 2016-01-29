@@ -1,6 +1,7 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -12,13 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
-public static int ROWS = 5;
 
-    private PlayerActor playerActor ;
+    private PlayerActor playerActor = new PlayerActor();
 
     private float nextRow = 0;
     private float div = MyScreen.WORLD_WIDTH / 2;
     private float newDiv = 0;
+
+    Stage stage;
+
+    private InterWindow interWindow;
 
     private int totalParticles = 0, goodParticles = 0;
 
@@ -28,6 +32,7 @@ public static int ROWS = 5;
         } else {
             return 1;
         }
+
     }
 
 
@@ -40,9 +45,23 @@ public static int ROWS = 5;
 
     public GameStage(Viewport viewport, Batch batch) {
         super(viewport, batch);
-playerActor = new PlayerActor();
+
         addActor(playerActor);
-        addActor(new ParticleActor(true, div));
+
+        stage = new Stage() {
+            @Override
+            public boolean keyDown(int keycode) {
+                switch (keycode) {
+                    case Input.Keys.ESCAPE:
+                    case Input.Keys.BACK:
+                        interWindow = new InterWindow(true);
+                        break;
+                }
+                return false;
+            }
+
+        };
+
 
     }
 
@@ -73,7 +92,7 @@ playerActor = new PlayerActor();
                     if(!pa.isFreezed()) {
                         totalParticles += 1;
 
-                        pa.freeze(playerActor.getX(), playerActor.movement);
+                        pa.freeze(playerActor.getX());
 
                     }
                 }
@@ -86,23 +105,23 @@ playerActor = new PlayerActor();
             }
         }
 
-        for (PlayerActor.Segment segment : playerActor.getSegments()) {
+        for (PlayerActor.Segment segment : playerActor.segments) {
             segment.y -= playerActor.speed;
             segment.py -= playerActor.speed;
         }
 
-        while(playerActor.getSegments().size() > 0) {
-            PlayerActor.Segment last = playerActor.getSegments().get(0);
+        while(playerActor.segments.size() > 0) {
+            PlayerActor.Segment last = playerActor.segments.get(0);
 
             if(last.y < 0) {
-                playerActor.getSegments().remove(0);
+                playerActor.segments.remove(0);
             } else break;
         }
 
 
         nextRow -= playerActor.speed;
         if(nextRow < 0) {
-            nextRow = MyScreen.WORLD_HEIGHT / ROWS;
+            nextRow = MyScreen.WORLD_HEIGHT / 5;
 
             generateRow();
 
@@ -116,16 +135,17 @@ playerActor = new PlayerActor();
 
     private void generateRow() {
 
-        for (int i = (int)(Math.random() * 8) + 2;--i > 0;) {
-            {
-                ParticleActor pa = new ParticleActor(true, div);
-                addActor(pa);
-            }
+        final int count = (int)(playerActor.speed * 1.1f);
 
-            {
-                ParticleActor pa = new ParticleActor(false, div);
-                addActor(pa);
-            }
+        ParticleActor pa;
+
+        for (int i = count;--i > 0;) {
+
+            pa = new ParticleActor(true, div);
+            addActor(pa);
+
+            pa = new ParticleActor(false, div);
+            addActor(pa);
 
         }
 
@@ -142,14 +162,14 @@ playerActor = new PlayerActor();
 
     @Override
     public void draw() {
-/*
         spriteBatch.begin();
 
         spriteBatch.draw(backgroundTexture, 0, 0, MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, 0, 0, 60, 60);
         spriteBatch.end();
-*/
-
         super.draw();
+
+
+
 
     }
 
