@@ -85,7 +85,6 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
         moveDivision();
 
-
         for(Actor actor : getActors()) {
             if(actor instanceof ParticleActor) {
                 ParticleActor pa = (ParticleActor)actor;
