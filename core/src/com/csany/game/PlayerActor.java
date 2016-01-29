@@ -11,9 +11,10 @@ import java.util.ArrayList;
 
 public class PlayerActor extends Actor {
 
+    /*
     class Segment {
-        final float x, y;
-final float px, py;
+        float x, y;
+        float px, py;
         public Segment(float x, float y) {
             this.x = x;
             this.y = y;
@@ -23,41 +24,40 @@ final float px, py;
     }
 
     ArrayList<Segment> segments = new ArrayList<Segment>();
-
+*/
     ShapeRenderer renderer = new ShapeRenderer();
 
-    float prevX = 100, prevY = 30;
-    float angle = (float)Math.PI / 2;
+    float movement = 0;
     float speed = 5f;
 
     @Override
     public void act(float delta) {
         super.act(delta);
 
-        float x = prevX + (float)Math.cos(angle) * speed;
-        float y = prevY + (float)Math.sin(angle) * speed;
-
         switch (Gdx.app.getType()) {
             case Android:
-                //world.setGravity(new Vector2(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX()));
+                movement = Gdx.input.getAccelerometerY() * 3;
                 break;
             case Desktop:
-            {
-                //angle = (float)Math.atan2(Gdx.input.getY() - y,  Gdx.input.getX() - x);
-                if(Gdx.input.getX() > x)
-                angle += .01;
-                else angle -= .01;
-
-            }
+                movement = (Gdx.input.getX() - getX()) / 10;
+                break;
         }
 
-        segments.add(new Segment(x, y));
+        //segments.add(new Segment(x, y));
 
-        prevX = x;
-        prevY = y;
+        float newX = getX() + movement;
+        if(newX < 0) {
+            newX = 0;
+        } else if (newX > Gdx.graphics.getWidth()) {
+            newX = Gdx.graphics.getWidth();
+        }
+        setX(newX);
 
+    }
 
-
+    PlayerActor() {
+        setX(Gdx.graphics.getWidth() / 2);
+        setY(150);
     }
 
     @Override
@@ -65,13 +65,16 @@ final float px, py;
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        renderer.setColor(1, 1, 0, 1);
+        renderer.setColor(0, 0, 0, 1);
 
+        renderer.circle(getX(), getY(), 3);
+
+        /*
         for(Segment segment : segments) {
             renderer.rectLine(segment.px, segment.py, segment.x, segment.y, 3);
 
         }
-
+*/
         renderer.end();
 
     }
