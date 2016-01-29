@@ -90,7 +90,7 @@ public class LoadingScreen extends MyScreen {
         }
         int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()*1.5f) - 1);
         try {
-            if (frameChanger > 0.25) {
+            if (frameChanger > 0.115) {
                 aa++;
                 sprite.setRegion(loadingAtlasRegions.get(aa));
                 frameChanger = 0;
