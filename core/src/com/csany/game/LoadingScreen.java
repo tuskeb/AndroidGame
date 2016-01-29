@@ -21,7 +21,6 @@ import javafx.scene.Camera;
 public class LoadingScreen extends MyScreen {
 
     Stage stage;
-    float frameChanger;
 
     Array<TextureAtlas.AtlasRegion> loadingAtlasRegions;
     public LoadingScreen() {
@@ -82,17 +81,15 @@ public class LoadingScreen extends MyScreen {
             ((MyGame) Gdx.app.getApplicationListener())
                     .setScreen(new MenuScreen()); //.setScreen(new GameScreen());
         }
-        frameChanger+=delta;
 
         //stage.act();
         batch.begin();
         sprite.setRegion(loadingAtlasRegions.get(0));
         int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()*1.5f) - 1);
-        if (frameChanger>20) {
-            sprite.setRegion(loadingAtlasRegions.get(Math.min(Math.max(0, i), loadingAtlasRegions.size - 1)));
-            frameChanger=0;
-        }
+
+        sprite.setRegion(loadingAtlasRegions.get(Math.min(Math.max(0, i), loadingAtlasRegions.size - 1)));
         sprite.draw(batch);
+
         //stage.draw();
         batch.end();
 
