@@ -27,7 +27,7 @@ public class ControlStage extends Stage {
         super.draw();
 
         batch.begin();
-        font.draw(batch, String.format("%.1f%%", gameStage.getStat() * 100), 10, Gdx.graphics.getHeight());
+        font.draw(batch, String.format("%.1f%%", gameStage.getStat() * 100), 10, MyScreen.WORLD_HEIGHT);
         batch.end();
 
     }

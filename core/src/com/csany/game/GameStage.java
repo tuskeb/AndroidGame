@@ -16,7 +16,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     private PlayerActor playerActor = new PlayerActor();
 
     private float nextRow = 0;
-    private float div = Gdx.graphics.getWidth() / 2;
+    private float div = MyScreen.WORLD_WIDTH / 2;
     private float newDiv = 0;
 
     private int totalParticles = 0, goodParticles = 0;
@@ -50,7 +50,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         div += (newDiv - div) / 10;
 
         if((int)div == (int)newDiv) {
-            newDiv = (float)Math.random() * Gdx.graphics.getWidth();
+            newDiv = (float)Math.random() * MyScreen.WORLD_WIDTH;
         }
 
     }
@@ -101,7 +101,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
         nextRow -= playerActor.speed;
         if(nextRow < 0) {
-            nextRow = Gdx.graphics.getHeight() / 5;
+            nextRow = MyScreen.WORLD_HEIGHT / 5;
 
             generateRow();
 
@@ -143,7 +143,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     public void draw() {
         spriteBatch.begin();
 
-        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, 0, 60, 60);
+        spriteBatch.draw(backgroundTexture, 0, 0, MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, 0, 0, 60, 60);
         spriteBatch.end();
         super.draw();
 

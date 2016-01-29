@@ -40,7 +40,7 @@ public class LoadingScreen extends MyScreen {
         Assets.manager.finishLoading();
         loadingAtlasRegions = Assets.manager.get(Assets.LOADING_ATLAS).getRegions();
         sprite.setSize(loadingAtlasRegions.get(0).getRegionWidth(), loadingAtlasRegions.get(0).getRegionHeight());
-        sprite.setPosition(Gdx.graphics.getWidth()/2-sprite.getWidth()/2,Gdx.graphics.getHeight()/2-sprite.getHeight()/2);
+        sprite.setPosition(MyScreen.WORLD_WIDTH/2-sprite.getWidth()/2,MyScreen.WORLD_HEIGHT/2-sprite.getHeight()/2);
         camera = new OrthographicCamera(1024,768);
         camera.translate(512,384);
         viewport = new ExtendViewport(1024, 768, camera);
@@ -88,7 +88,7 @@ public class LoadingScreen extends MyScreen {
             sprite.setRegion(loadingAtlasRegions.get(0));
             teszt = true;
         }
-        int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()*1.5f) - 1);
+        int i = (int) (((float)loadingAtlasRegions.size * Assets.manager.getProgress()) - 1);
         try {
             if (frameChanger > 0.115) {
                 aa++;
@@ -100,7 +100,7 @@ public class LoadingScreen extends MyScreen {
             if (Assets.manager.update()) {
                 Assets.afterLoaded();
                 ((MyGame) Gdx.app.getApplicationListener())
-                        .setScreen(new MenuScreen()); //.setScreen(new GameScreen());
+                        .setScreen(new GameScreen());
             }
         }
         sprite.draw(batch);
@@ -115,7 +115,7 @@ public class LoadingScreen extends MyScreen {
 	    Assets.manager.finishLoading();
 		loadingAtlasRegions = Assets.manager.get(Assets.LOADING_ATLAS).getRegions();
 		sprite.setSize(loadingAtlasRegions.get(0).getRegionWidth(), loadingAtlasRegions.get(0).getRegionHeight());
-		sprite.setPosition(Gdx.graphics.getWidth()/2-sprite.getWidth()/2,Gdx.graphics.getHeight()/2-sprite.getHeight()/2);
+		sprite.setPosition(MyScreen.WORLD_WIDTH/2-sprite.getWidth()/2,MyScreen.WORLD_HEIGHT/2-sprite.getHeight()/2);
         /*camera = new OrthographicCamera(1024,768);
         camera.translate(512,384);
         viewport = new ExtendViewport(1024, 768, camera);

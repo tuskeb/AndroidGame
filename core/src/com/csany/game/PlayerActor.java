@@ -63,8 +63,8 @@ public class PlayerActor extends Actor {
 
         if(newX < 0) {
             newX = 0;
-        } else if (newX > Gdx.graphics.getWidth()) {
-            newX = Gdx.graphics.getWidth();
+        } else if (newX > MyScreen.WORLD_WIDTH) {
+            newX = MyScreen.WORLD_WIDTH;
         }
         setX(newX);
 
@@ -83,7 +83,7 @@ public class PlayerActor extends Actor {
         animation = new Animation(1 / 30f, textureAtlasRegions_YELLOW, Animation.PlayMode.LOOP);
         setSize(32, 32);
 
-        setX(Gdx.graphics.getWidth() / 2);
+        setX(MyScreen.WORLD_WIDTH / 2);
         setY(150);
 
 

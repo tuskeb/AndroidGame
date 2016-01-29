@@ -82,15 +82,15 @@ public class MenuScreen extends MyScreen{
         actor = new BallActor();
         actor.setSize(128, 128);
         //camera = new OrthographicCamera(1024,768);
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-        viewport = new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
+        camera = new OrthographicCamera(MyScreen.WORLD_WIDTH,MyScreen.WORLD_HEIGHT);
+        camera.translate(MyScreen.WORLD_WIDTH/2,MyScreen.WORLD_HEIGHT/2);
+        viewport = new ExtendViewport(MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT, camera);
 
         stage.setViewport(viewport);
 
         MenuBackgroundActor menuBackgroundActor = new MenuBackgroundActor();
         menuBackgroundActor.setPosition(0, 0);
-        menuBackgroundActor.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        menuBackgroundActor.setSize(MyScreen.WORLD_WIDTH, MyScreen.WORLD_HEIGHT);
         stage.addActor(menuBackgroundActor);
         button = new MyButton("Play", MyWindow.textButtonStyle);
         button.addListener(new ClickListener() {
@@ -99,7 +99,7 @@ public class MenuScreen extends MyScreen{
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
             }
         });
-        button.setPosition(Gdx.graphics.getWidth()*0.7f,Gdx.graphics.getHeight()*0.3f);
+        button.setPosition(MyScreen.WORLD_WIDTH*0.7f,MyScreen.WORLD_HEIGHT*0.3f);
 */
 
        // stage.addActor(button);
@@ -114,9 +114,9 @@ public class MenuScreen extends MyScreen{
         camera.viewportHeight = height;
 
         stage.getViewport().update(width, height);*/
-        /*camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-        viewport = new ExtendViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), camera);
+        /*camera = new OrthographicCamera(MyScreen.WORLD_WIDTH,MyScreen.WORLD_HEIGHT);
+        camera.translate(MyScreen.WORLD_WIDTH/2,MyScreen.WORLD_HEIGHT/2);
+        viewport = new ExtendViewport(MyScreen.WORLD_WIDTH,MyScreen.WORLD_HEIGHT, camera);
         stage.setViewport(viewport);
         stage.getCamera().update();
 */

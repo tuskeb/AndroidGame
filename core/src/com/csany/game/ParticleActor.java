@@ -34,15 +34,16 @@ public class ParticleActor extends Actor {
         textureAtlasRegions = bla ? Assets.manager.get(Assets.BLUE_PARTICLE_ATLAS).getRegions() : Assets.manager.get(Assets.RED_PARTICLE_ATLAS).getRegions();;
 
         sprite = new Sprite(textureAtlasRegions.first());
-        animation = new Animation(1 / 30f, textureAtlasRegions, Animation.PlayMode.LOOP);
+        animation = new Animation(1 / 3f, textureAtlasRegions, Animation.PlayMode.LOOP);
+sprite.setSize(32, 32);
 
         if(this.state) {
             setX((float)(Math.random() * div));
         } else {
-            setX(div + (float)(Math.random() * (Gdx.graphics.getWidth() - div)));
+            setX(div + (float)(Math.random() * (MyScreen.WORLD_WIDTH - div)));
         }
 
-        setY(Gdx.graphics.getHeight() + 10 + (float) (Math.random() * 10) - 5);
+        setY(MyScreen.WORLD_HEIGHT + 10 + (float) (Math.random() * 10) - 5);
 
     }
 
@@ -79,7 +80,7 @@ public class ParticleActor extends Actor {
     @Override
     protected void positionChanged() {
         super.positionChanged();
-        sprite.setPosition(30, 30);
+        sprite.setPosition(getX(), getY());
     }
 
     public boolean isGood() {
