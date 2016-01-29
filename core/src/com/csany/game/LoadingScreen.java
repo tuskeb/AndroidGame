@@ -1,22 +1,11 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-
-import javafx.scene.Camera;
 
 public class LoadingScreen extends MyScreen {
 
@@ -28,8 +17,6 @@ public class LoadingScreen extends MyScreen {
     }
     Sprite sprite = new Sprite();
 
-
-
     @Override
     public void show() {
         Assets.manager.load(Assets.LOADING_ATLAS);
@@ -40,7 +27,6 @@ public class LoadingScreen extends MyScreen {
         sprite.setPosition(MyScreen.WORLD_WIDTH/2-sprite.getWidth()/2,MyScreen.WORLD_HEIGHT/2-sprite.getHeight()/2);
         camera = new OrthographicCamera(1024,768);
         camera.translate(512,384);
-        viewport = new ExtendViewport(1024, 768, camera);
 
         Assets.load();
 
@@ -49,7 +35,6 @@ public class LoadingScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-
 
         if (Assets.manager.update()) {
             Assets.afterLoaded();
