@@ -1,5 +1,4 @@
-package com.csanydroid.game;
-
+package com.csany.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -23,11 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.csany.game.Assets;
 
-/**
- * Created by tanarur on 2016.01.17..
- */
+
 abstract public class MyWindow extends Window {
     private static WindowStyle windowStyle = new WindowStyle();
     protected final static Label.LabelStyle labelStyle = new Label.LabelStyle();
@@ -52,9 +48,9 @@ abstract public class MyWindow extends Window {
 
 
         windowStyle.titleFont = bitmapFont;
-        //Sprite sprite = new Sprite(Assets.manager.get(Assets.WINDOW));
-        //sprite.setSize(200, 100);
-        //windowStyle.background = new SpriteDrawable(sprite);
+        Sprite sprite = new Sprite(Assets.manager.get(Assets.WINDOW));
+        sprite.setSize(200, 100);
+        windowStyle.background = new SpriteDrawable(sprite);
         windowStyle.titleFont = bitmapFont;
         windowStyle.titleFontColor = Color.WHITE;
         Pixmap pixmap = new Pixmap(1,1, Pixmap.Format.RGBA8888);
@@ -69,9 +65,9 @@ abstract public class MyWindow extends Window {
 
         textButtonStyle.font = bitmapFont;
         textButtonStyle.fontColor = Color.WHITE;
-        //textButtonStyle.over = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(0)));
-        //textButtonStyle.down = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(1)));
-        //textButtonStyle.up = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(2)));
+        textButtonStyle.over = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(0)));
+        textButtonStyle.down = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(1)));
+        textButtonStyle.up = new SpriteDrawable(new Sprite(Assets.manager.get(Assets.BUTTON_ATLAS).getRegions().get(2)));
 
 
     }
@@ -102,19 +98,5 @@ abstract public class MyWindow extends Window {
     {
         titleLabel.setText(title);
     }
-/*
-    @Override
-    public Dialog show(Stage stage) {
-        AlphaAction action = new AlphaAction();
-        action.setDuration(1);
-        action.setReverse(true);
-        return super.show(stage, action);
-        //return super.show(stage);
-    }
-
-    @Override
-    public Dialog show(Stage stage, Action action) {
-        return super.show(stage, action);
-    }*/
 }
 
