@@ -48,9 +48,9 @@ public class MenuScreen extends MyScreen{
         camera.translate(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         viewport = new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
 
-        //stage.setViewport(viewport);
 
-        stage = new Stage() {
+
+        stage = new Stage(viewport) {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode) {
@@ -66,51 +66,57 @@ public class MenuScreen extends MyScreen{
 
 
 
-        MyButton buttonStart, buttonLabel, buttonHelp; Skin skin = new Skin();
+        MyButton button; Skin skin = new Skin();
+
+        PlayerActor playerActor= new PlayerActor();
+
+        //Label label;
+
+        Table table = new Table();
+        table.setFillParent(true);
+        stage.addActor(table);
+
+        final float ROW_HEIGHT = 75f;
+
+        /*label = new Label("Endless Ball Running - The Game", MyScreen.LABEL_STYLE);
+        label.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+        table.add(label)
+                .width(500f)
+                .height(130f);
+        table.row().height(ROW_HEIGHT);*/
 
 
-        buttonLabel = new MyButton("Endless Ball Running - The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);//Ez volt a legegyzerűbb, ha nem adok neki funkkciót,de ott van....
-        buttonLabel.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
 
-        buttonStart = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
-        buttonStart.addListener(new ClickListener() {
+        button = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE_LABEL);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
+        button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                ((MyGame) Gdx.app.getApplicationListener())
-                        .setScreen(new GameScreen());
+                ((MyGame) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
             }
         });
-        buttonStart.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
+        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+        table.add(button);
+        table.row().height(ROW_HEIGHT);
 
-        buttonHelp = new MyButton("Súgó", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
-        buttonHelp.addListener(new ClickListener() {
+        button = new MyButton("Súgó", MyScreen.TEXT_BUTTON_STYLE_LABEL);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
+        button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
                 ((MyGame) Gdx.app.getApplicationListener()).setScreen(new HelpScreen());
             }
         });
-        buttonHelp.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f - buttonLabel.getHeight());
-        stage.addActor(buttonLabel);
-        stage.addActor(buttonStart);
-        stage.addActor(buttonHelp);
-
-
-
-
-
-
-
-
+        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+        table.add(button);
+        stage.addActor(table);
+        //stage.addActor(playerActor);
 
     }
 
     public void renderBackground() {
         backgroundSprite.draw(batch);
     }
-
-
 
     @Override
     public void resize(int width, int height) {

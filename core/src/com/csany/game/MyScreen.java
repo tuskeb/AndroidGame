@@ -35,7 +35,7 @@ public class MyScreen implements Screen {
 
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-		parameter.size = 200;
+		parameter.size = 100;
 		parameter.kerning = false;
 		parameter.color = Color.BLACK;
 		parameter.characters = CHARS;
@@ -49,7 +49,7 @@ public class MyScreen implements Screen {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 50;
+        parameter.size = 25;
         parameter.characters = CHARS;
         FONT_HOBO_STD = generator.generateFont(parameter);
         FONT_HOBO_STD.setColor(0, 0, 0, 1f);
@@ -60,7 +60,7 @@ public class MyScreen implements Screen {
 	static {
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-		parameter.size = 55;
+		parameter.size = 25;
 		parameter.characters = CHARS;
 		FONT_HOBO_STD_TOP = generator.generateFont(parameter);
 		FONT_HOBO_STD_TOP.setColor(0, 0, 0, 1f);
@@ -71,7 +71,7 @@ public class MyScreen implements Screen {
     static {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 27;
+        parameter.size = 40;
         parameter.characters = CHARS;
         FONT_CALIBRI = generator.generateFont(parameter);
         FONT_CALIBRI.setColor(0, 0, 0, 1f);
@@ -99,7 +99,7 @@ public class MyScreen implements Screen {
 
     static {
         TEXT_BUTTON_STYLE_LABEL = new TextButton.TextButtonStyle();
-        TEXT_BUTTON_STYLE_LABEL.font = FONT_HOBO_STD;
+        TEXT_BUTTON_STYLE_LABEL.font = FONT_CALIBRI;
         TEXT_BUTTON_STYLE_LABEL.fontColor = Color.WHITE;
         TEXT_BUTTON_STYLE_LABEL.downFontColor = Color.GREEN;
         TEXT_BUTTON_STYLE_LABEL.overFontColor = Color.valueOf("880000");

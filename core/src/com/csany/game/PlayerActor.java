@@ -8,12 +8,15 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
 
 public class PlayerActor extends Actor {
     final Array<TextureAtlas.AtlasRegion> textureAtlasRegions_YELLOW = Assets.manager.get(Assets.YELLOW_PARTICLE_ATLAS).getRegions();
+
+
 
 
     PlayerActor() {
@@ -25,7 +28,6 @@ public class PlayerActor extends Actor {
 
         setX(MyScreen.WORLD_WIDTH / 2);
         setY(150);
-
 
     }
 
@@ -46,6 +48,8 @@ public class PlayerActor extends Actor {
     private ArrayList<Segment> segments = new ArrayList<Segment>();
 
     private ShapeRenderer renderer = new ShapeRenderer();
+
+
 
     float movement = 0;
     float speed = 5f;
