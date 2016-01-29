@@ -65,6 +65,8 @@ public class Assets {
         manager.load(Assets.BLUE_PARTICLE_ATLAS);
         manager.load(Assets.RED_PARTICLE_ATLAS);
         manager.load(Assets.YELLOW_PARTICLE_ATLAS);
+        manager.load(Assets.WINDOW);
+        manager.load(Assets.BUTTON_ATLAS);
         //manager.load(Assets.SOMETHING)<--This is the syntax
     }
 
