@@ -1,8 +1,10 @@
 package com.csany.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,11 +13,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameStage extends Stage implements GestureDetector.GestureListener  {
 
-    PlayerActor playerActor = new PlayerActor();
+    private PlayerActor playerActor = new PlayerActor();
 
-    float h = 0;
-    float div = Gdx.graphics.getWidth() / 2;
-    float newDiv = 0;
+    private float nextRow = 0;
+    private float div = Gdx.graphics.getWidth() / 2;
+    private float newDiv = 0;
 
     private int totalParticles = 0, goodParticles = 0;
 
@@ -27,10 +29,20 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
         }
     }
 
+
+    private final Texture backgroundTexture;
+
+    {
+        backgroundTexture = new Texture(new Pixmap(Gdx.files.internal("a.png")));
+        backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+    }
+
     public GameStage(Viewport viewport, Batch batch) {
         super(viewport, batch);
 
         addActor(playerActor);
+
+
     }
 
     public void moveDivision() {
@@ -43,13 +55,14 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     }
 
+    SpriteBatch spriteBatch = new SpriteBatch();
+
     @Override
     public void act(float delta) {
         super.act(delta);
 
         moveDivision();
 
-        h += playerActor.speed;
 
         for(Actor actor : getActors()) {
             if(actor instanceof ParticleActor) {
@@ -72,15 +85,23 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
             }
         }
 
-        /*for (PlayerActor.Segment segment : playerActor.segments) {
+        for (PlayerActor.Segment segment : playerActor.segments) {
             segment.y -= playerActor.speed;
-            segment.x -= playerActor.speed;
-            segment.px -= playerActor.speed;
             segment.py -= playerActor.speed;
-        }*/
+        }
 
-        if(h > 100) {
-            h = 0;
+        while(playerActor.segments.size() > 0) {
+            PlayerActor.Segment last = playerActor.segments.get(0);
+
+            if(last.y < 0) {
+                playerActor.segments.remove(0);
+            } else break;
+        }
+
+
+        nextRow -= playerActor.speed;
+        if(nextRow < 0) {
+            nextRow = Gdx.graphics.getHeight() / 5;
 
             generateRow();
 
@@ -110,7 +131,6 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     }
 
 
-
     public int getGoodParticles() {
         return goodParticles;
     }
@@ -122,6 +142,11 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     @Override
     public void draw() {
         super.draw();
+        spriteBatch.begin();
+        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, 0, 30, 30);
+
+
+        spriteBatch.end();
     }
 
     @Override

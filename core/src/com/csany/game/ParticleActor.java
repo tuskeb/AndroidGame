@@ -67,7 +67,7 @@ public class ParticleActor extends Actor {
         if(this.state) renderer.setColor(0, 0, 1, 1);
         else renderer.setColor(1, 0, 0, 1);
 
-        renderer.circle(getX() - 5, getY() - 5, 10);
+        renderer.circle(getX() - 2, getY() - 2, 4);
 
         renderer.end();
 
