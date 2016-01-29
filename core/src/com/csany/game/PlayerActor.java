@@ -11,24 +11,24 @@ import java.util.ArrayList;
 
 public class PlayerActor extends Actor {
 
-    /*
     class Segment {
         float x, y;
         float px, py;
-        public Segment(float x, float y) {
+        public Segment(float x) {
             this.x = x;
-            this.y = y;
-            this.py = prevY;
-            this.px = prevX;
+            this.y = getY();
+            this.py = getY() - speed;
+            this.px = getX();
         }
     }
 
     ArrayList<Segment> segments = new ArrayList<Segment>();
-*/
+
     ShapeRenderer renderer = new ShapeRenderer();
 
     float movement = 0;
     float speed = 5f;
+    int i = 0;
 
     @Override
     public void act(float delta) {
@@ -43,9 +43,13 @@ public class PlayerActor extends Actor {
                 break;
         }
 
-        //segments.add(new Segment(x, y));
 
         float newX = getX() + movement;
+        if(++i == 2) {
+            i = 0;
+            segments.add(new Segment(newX));
+        }
+
         if(newX < 0) {
             newX = 0;
         } else if (newX > Gdx.graphics.getWidth()) {
@@ -67,14 +71,13 @@ public class PlayerActor extends Actor {
 
         renderer.setColor(0, 0, 0, 1);
 
-        renderer.circle(getX(), getY(), 3);
+        renderer.circle(getX(), getY(), 5);
 
-        /*
         for(Segment segment : segments) {
             renderer.rectLine(segment.px, segment.py, segment.x, segment.y, 3);
 
         }
-*/
+
         renderer.end();
 
     }

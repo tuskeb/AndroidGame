@@ -29,7 +29,6 @@ public class MyButton extends TextButton {
                 //Assets.manager.get(Assets.CLICK_SOUND).play();
             }
         });
-
     }
 
 }

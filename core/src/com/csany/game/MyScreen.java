@@ -24,16 +24,16 @@ public class MyScreen implements Screen {
     //protected Viewport viewport = new ScreenViewport(camera);
     protected Viewport viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
     private static String CHARS = "0123456789öüóqwertzuiopőúasdfghjkléáűíyxcvbnm'+!%/=()ÖÜÓQWERTZUIOPŐÚASDFGHJKLÉÁŰÍYXCVBNM?:_*<>#&@{}[],-.";
-    protected static BitmapFont FONT_HOBO_STD, /*FONT_HOBO_STD_TOP, */FONT_CALIBRI;
+    protected static BitmapFont FONT_HOBO_STD, FONT_HOBO_STD_TOP, FONT_CALIBRI;
 
     protected float r=0.5f,g=0.5f,b=0.5f;
 
     public MyScreen() { }
-/*
+
 	protected static BitmapFont font;
 	static {
 
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.size = 200;
 		parameter.kerning = false;
@@ -42,12 +42,12 @@ public class MyScreen implements Screen {
 		//font = generator.generateFont(parameter);
 		generator.dispose();
 
-	}*/
+	}
 
 
     static {
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 50;
         parameter.characters = CHARS;
@@ -57,19 +57,19 @@ public class MyScreen implements Screen {
     }
 
 
-	/*static {
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));
+	static {
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parameter.size = 55;
 		parameter.characters = CHARS;
 		FONT_HOBO_STD_TOP = generator.generateFont(parameter);
 		FONT_HOBO_STD_TOP.setColor(0, 0, 0, 1f);
 		generator.dispose();
-	}*/
+	}
 
-    /*
+
     static {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.otf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/AlegreyaSC-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 27;
         parameter.characters = CHARS;
@@ -78,7 +78,8 @@ public class MyScreen implements Screen {
         generator.dispose();
     }
 
-*/
+
+
 
 
 
@@ -92,6 +93,18 @@ public class MyScreen implements Screen {
         TEXT_BUTTON_STYLE.overFontColor = Color.valueOf("880000");
         TEXT_BUTTON_STYLE.pressedOffsetX = 3;
         TEXT_BUTTON_STYLE.pressedOffsetY = 3;
+    }
+
+    protected static final TextButton.TextButtonStyle TEXT_BUTTON_STYLE_LABEL;
+
+    static {
+        TEXT_BUTTON_STYLE_LABEL = new TextButton.TextButtonStyle();
+        TEXT_BUTTON_STYLE_LABEL.font = FONT_HOBO_STD;
+        TEXT_BUTTON_STYLE_LABEL.fontColor = Color.WHITE;
+        TEXT_BUTTON_STYLE_LABEL.downFontColor = Color.GREEN;
+        TEXT_BUTTON_STYLE_LABEL.overFontColor = Color.valueOf("880000");
+        TEXT_BUTTON_STYLE_LABEL.pressedOffsetX = 3;
+        TEXT_BUTTON_STYLE_LABEL.pressedOffsetY = 3;
     }
 
     protected static final Label.LabelStyle LABEL_STYLE;

@@ -45,7 +45,7 @@ public class Assets {
 
     public static void load() {
 
-        // manager.load()
+        // manager.load(Assets.SOMETHING)<--This is the syntax
     }
 
     public static void afterLoaded() {

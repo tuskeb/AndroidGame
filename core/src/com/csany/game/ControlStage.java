@@ -1,5 +1,6 @@
 package com.csany.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +27,7 @@ public class ControlStage extends Stage {
         super.draw();
 
         batch.begin();
-        font.draw(batch, String.format("%.1f%%", gameStage.getStat() * 100), 200, 200);
+        font.draw(batch, String.format("%.1f%%", gameStage.getStat() * 100), 10, Gdx.graphics.getHeight());
         batch.end();
 
     }
