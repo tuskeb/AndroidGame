@@ -31,8 +31,19 @@ public class Assets {
 
      */
 
+
+    public static final AssetDescriptor<TextureAtlas> BLUE_PARTICLE_ATLAS
+            = new AssetDescriptor<TextureAtlas>("kek.atlas", TextureAtlas.class);
+
     public static final AssetDescriptor<TextureAtlas> LOADING_ATLAS
             = new AssetDescriptor<TextureAtlas>("loading.atlas", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> RED_PARTICLE_ATLAS
+            = new AssetDescriptor<TextureAtlas>("piros.atlas", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> YELLOW_PARTICLE_ATLAS
+            = new AssetDescriptor<TextureAtlas>("sarga.atlas", TextureAtlas.class);
+
 
 
     public static void prepare() {
@@ -44,15 +55,15 @@ public class Assets {
 
 
     public static void load() {
-
-        // manager.load(Assets.SOMETHING)<--This is the syntax
+        manager.load(Assets.BLUE_PARTICLE_ATLAS);
+        manager.load(Assets.RED_PARTICLE_ATLAS);
+        manager.load(Assets.YELLOW_PARTICLE_ATLAS);
+        //manager.load(Assets.SOMETHING)<--This is the syntax
     }
 
     public static void afterLoaded() {
 
     }
-
-
 
     public static void unload() {
         manager.dispose();
