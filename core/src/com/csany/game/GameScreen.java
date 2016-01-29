@@ -1,5 +1,8 @@
 package com.csany.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 public class GameScreen extends MyScreen {
 
     GameStage gameStage;
@@ -8,9 +11,17 @@ public class GameScreen extends MyScreen {
 
         super();
 
-gameStage = new GameStage(viewport, batch);
+        gameStage = new GameStage(viewport, batch);
 
 
     }
 
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+
+        gameStage.act(delta);
+        gameStage.draw();
+
+    }
 }
