@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.AlphaAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -42,7 +43,7 @@ public class MenuScreen extends MyScreen{
                 switch (keycode) {
                     case Input.Keys.ESCAPE:
                     case Input.Keys.BACK:
-                        //((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
+                        System.exit(0);
                         break;
                 }
                 return false;
@@ -52,10 +53,27 @@ public class MenuScreen extends MyScreen{
 
 
 
-        MyButton button;
+        MyButton button, buttonLabel; Skin skin = new Skin();
 
         //Sprite sprite = new Sprite(Assets.manager.get(Assets.PLAY));
         //sprite.setPosition(487, 265);
+        button = new MyButton("Indítás", MyScreen.TEXT_BUTTON_STYLE);//MyButton(String text, Skin skin, String styleName) || (String text, TextButtonStyle style) || MyButton(String text, Skin skin)
+        button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //TODO setScreen Game
+                // ((Game) Gdx.app.getApplicationListener()).setScreen(new MazeSelectorScreen());
+            }
+        });
+        button.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH / 2f);
+
+        buttonLabel = new MyButton("Endless Ball Running - The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
+        buttonLabel.setPosition(WORLD_HEIGHT / 2f, WORLD_WIDTH/2f);
+        stage.addActor(buttonLabel);
+
+
+        //button = new MyButton("Endless Ball Running\n The Game", MyScreen.TEXT_BUTTON_STYLE_LABEL);
+        stage.addActor(button);
 
 
 

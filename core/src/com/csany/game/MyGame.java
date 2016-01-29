@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**MAIN CLASS*/
+
 public class MyGame extends Game implements ApplicationListener {
 	SpriteBatch batch;
 	//Texture img;
@@ -28,6 +30,7 @@ public class MyGame extends Game implements ApplicationListener {
 		Assets.prepare();
 
 		setScreen(new LoadingScreen());
+		//setScreen(new MenuScreen());
 
 	}
 
