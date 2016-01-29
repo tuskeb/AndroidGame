@@ -44,6 +44,13 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> YELLOW_PARTICLE_ATLAS
             = new AssetDescriptor<TextureAtlas>("sarga.atlas", TextureAtlas.class);
 
+    public static final AssetDescriptor<Texture> WINDOW
+            = new AssetDescriptor<Texture>("window.png", Texture.class);
+
+    public static final AssetDescriptor<TextureAtlas> BUTTON_ATLAS
+            = new AssetDescriptor<TextureAtlas>("button.atlas", TextureAtlas.class);
+
+
 
 
     public static void prepare() {
