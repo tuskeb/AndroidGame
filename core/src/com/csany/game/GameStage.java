@@ -33,7 +33,7 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
     private final Texture backgroundTexture;
 
     {
-        backgroundTexture = new Texture(new Pixmap(Gdx.files.internal("a.png")));
+        backgroundTexture = new Texture(new Pixmap(Gdx.files.internal("mdn_sq.png")));
         backgroundTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     }
 
@@ -141,12 +141,15 @@ public class GameStage extends Stage implements GestureDetector.GestureListener 
 
     @Override
     public void draw() {
-        super.draw();
         spriteBatch.begin();
-        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, 0, 30, 30);
 
-
+        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, 0, 60, 60);
         spriteBatch.end();
+        super.draw();
+
+
+
+
     }
 
     @Override

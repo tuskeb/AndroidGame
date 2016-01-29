@@ -9,6 +9,8 @@ public class GameScreen extends MyScreen {
 
         super();
 
+        setBackgroundColor(1,1,1);
+
         gameStage = new GameStage(viewport, batch);
         controlStage = new ControlStage(viewport, gameStage);
 
